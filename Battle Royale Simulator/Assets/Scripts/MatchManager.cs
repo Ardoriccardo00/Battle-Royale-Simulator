@@ -7,6 +7,22 @@ using TMPro;
 
 public class MatchManager : MonoBehaviour
 {
+    #region Singleton
+    public static MatchManager Instance { get; private set; }
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            //dont destroy on load if needed
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    #endregion
+
     [SerializeField] GameObject playerPrefab;
     [SerializeField] Vector3 worldSize;
     [SerializeField] TextMeshProUGUI winnerText;
@@ -51,7 +67,7 @@ public class MatchManager : MonoBehaviour
         if (matchHasStarted)
         {
             CheckForPlayers();
-            playersList.Sort((x, y) => x.ReturnKills().CompareTo(y.ReturnKills()));
+            playersList.Sort((x, y) => y.ReturnKills().CompareTo(x.ReturnKills()));
             UpdateScoreboard();
             if (firstBlood == false) CheckFirstBlood();
         }       
@@ -86,11 +102,11 @@ public class MatchManager : MonoBehaviour
             {
                 TextMeshProUGUI buttonText = scoreBoardsButtons[i].GetComponentInChildren<TextMeshProUGUI>();
 
-                buttonText.text = playersList[i].GetComponent<PlayerIdentity>().ReturnPlayerName()
+                buttonText.text = playersList[i].ReturnPlayerName()
                     + " "
-                    + playersList[i].GetComponent<PlayerIdentity>().ReturnKills();
+                    + playersList[i].ReturnKills();
             }
-            catch { }
+            catch { }         
         }
     }
 

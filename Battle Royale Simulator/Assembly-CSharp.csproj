@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Chest.cs" />
+    <Compile Include="Assets\Scripts\KillFeed.cs" />
     <Compile Include="Assets\Scripts\LookAtCAmera.cs" />
     <Compile Include="Assets\Scripts\MatchManager.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />

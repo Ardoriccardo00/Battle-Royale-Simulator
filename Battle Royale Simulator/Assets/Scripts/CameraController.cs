@@ -6,7 +6,8 @@ public class CameraController : MonoBehaviour
 {
     public LayerMask movementMask;
     Camera cam;
-    [SerializeField] float moveSpeed = 10;
+    [SerializeField] float moveSpeedAuto = 1;
+    [SerializeField] float moveSpeedManual = 1;
 
     Vector3 originalPos;
     Quaternion originalRot;
@@ -14,13 +15,15 @@ public class CameraController : MonoBehaviour
     GameObject playerTarget;
     bool isFreeView = false;
     bool canMoveToOriginalPos;
-    bool isFirstPerson = true;
+    bool isFirstPerson = false;
 
     void Start()
     {
         cam = Camera.main;
         originalPos = transform.position;
         originalRot = transform.rotation;
+        moveSpeedAuto = moveSpeedAuto * Time.deltaTime;
+        moveSpeedManual = moveSpeedManual * Time.deltaTime;
     }
 
     void Update()
@@ -50,27 +53,27 @@ public class CameraController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            transform.Translate(Vector3.forward * moveSpeed);
+            transform.Translate(Vector3.forward * moveSpeedManual);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            transform.Translate(Vector3.back * moveSpeed);
+            transform.Translate(Vector3.back * moveSpeedManual);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Translate(Vector3.left * moveSpeed);
+            transform.Translate(Vector3.left * moveSpeedManual);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Translate(Vector3.right * moveSpeed);
+            transform.Translate(Vector3.right * moveSpeedManual);
         }
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            transform.Rotate(Vector3.left * moveSpeed);
+            transform.Rotate(Vector3.left * moveSpeedManual);
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            transform.Rotate(Vector3.right * moveSpeed);
+            transform.Rotate(Vector3.right * moveSpeedManual);
         }
     }
 
@@ -107,7 +110,7 @@ public class CameraController : MonoBehaviour
             newPosition = playerTarget.transform.position;
         }
             
-        transform.position = Vector3.MoveTowards(transform.position, newPosition, moveSpeed);
+        transform.position = Vector3.MoveTowards(transform.position, newPosition, moveSpeedAuto);
     }
 
     public void MoveToOriginalPos()
@@ -117,7 +120,7 @@ public class CameraController : MonoBehaviour
         {
             canMoveToOriginalPos = true;
             playerTarget = null;
-            transform.position = Vector3.MoveTowards(transform.position, originalPos, moveSpeed);
+            transform.position = Vector3.MoveTowards(transform.position, originalPos, moveSpeedAuto);
         }
         else canMoveToOriginalPos = false;
     }

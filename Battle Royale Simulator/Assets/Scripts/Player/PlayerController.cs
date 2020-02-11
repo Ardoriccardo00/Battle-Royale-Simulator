@@ -134,7 +134,8 @@ public class PlayerController : MonoBehaviour
 
         if (target.TakeDamage(damage))
         {
-            print(identity.ReturnPlayerName() + " has killed " + target.GetComponent<PlayerIdentity>().ReturnPlayerName());
+            KillFeed.Instance.AddKillFeedItem(identity.ReturnPlayerName(), target.GetComponent<PlayerIdentity>().ReturnPlayerName());
+            //print(identity.ReturnPlayerName() + " has killed " + target.GetComponent<PlayerIdentity>().ReturnPlayerName());
             identity.AddKills();
         }
     }

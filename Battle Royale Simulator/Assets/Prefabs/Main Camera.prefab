@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7717937753790871133}
   - component: {fileID: 7717937753790871132}
   - component: {fileID: 7717937753790871131}
-  - component: {fileID: 7717937753790871128}
   - component: {fileID: 3698864395135869102}
   m_Layer: 9
   m_Name: Main Camera
@@ -28,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7717937753790871135}
-  m_LocalRotation: {x: 0.27535886, y: 0.31403542, z: -0.09569804, w: 0.90354925}
+  m_LocalRotation: {x: 0.27535748, y: 0.3140366, z: -0.095694914, w: 0.90354955}
   m_LocalPosition: {x: -49.093307, y: 38.174465, z: -75.0829}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 33.897003, y: 38.331, z: 0.001}
 --- !u!20 &7717937753790871133
 Camera:
   m_ObjectHideFlags: 0
@@ -63,7 +62,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -100,22 +99,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementMask:
     serializedVersion: 2
-    m_Bits: 4294967295
-  moveSpeed: 1
-  originalPos: {x: -49, y: 38, z: -75}
---- !u!114 &7717937753790871128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7717937753790871135}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72f127255c182ab4ca778cd1d4e6a80a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseSensitivity: 100
+    m_Bits: 256
+  moveSpeedAuto: 300
+  moveSpeedManual: 100
 --- !u!114 &3698864395135869102
 MonoBehaviour:
   m_ObjectHideFlags: 0

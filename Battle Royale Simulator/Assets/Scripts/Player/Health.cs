@@ -10,11 +10,9 @@ public class Health : MonoBehaviour
     [SerializeField] MeshRenderer visorRenderer;
     int currentHealth;
     bool isDead = false;
-    MatchManager matchManager;
 
     void Start()
     {
-        matchManager = FindObjectOfType<MatchManager>();
         currentHealth = maxHealth;
     }
 
@@ -49,7 +47,7 @@ public class Health : MonoBehaviour
     void Die()
     {
         isDead = true;
-        matchManager.RemovePlayer(GetComponent<PlayerIdentity>());
+        MatchManager.Instance.RemovePlayer(GetComponent<PlayerIdentity>());
         Destroy(gameObject);
     }
 }
