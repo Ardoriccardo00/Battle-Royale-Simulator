@@ -24,6 +24,15 @@ public class KillFeed : MonoBehaviour
     }
     #endregion
 
+    public void AddKillFeedItemIdentity(string killer, string victim)
+    {
+        var item = Instantiate(killFeedItem);
+        Destroy(item, 3);
+        item.transform.SetParent(transform);
+        TextMeshProUGUI text = item.GetComponentInChildren<TextMeshProUGUI>();
+        text.text = "<b><color=green>" + killer + "</color></b> <color=red>" + "has killed </color> <b><color=blue>" + victim + "</color></b>";
+    }
+
     public void AddKillFeedItem(string killer, string victim)
     {
         var item = Instantiate(killFeedItem);

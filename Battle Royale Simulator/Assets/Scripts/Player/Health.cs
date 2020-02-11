@@ -47,7 +47,8 @@ public class Health : MonoBehaviour
     void Die()
     {
         isDead = true;
-        MatchManager.Instance.RemovePlayer(GetComponent<PlayerIdentity>());
+        //MatchManager.Instance.RemovePlayer(GetComponent<PlayerIdentity>());
+        GameManager.Instance.RemovePlayer(GetComponent<PlayerStatsTXT>());
         Destroy(gameObject);
     }
 }

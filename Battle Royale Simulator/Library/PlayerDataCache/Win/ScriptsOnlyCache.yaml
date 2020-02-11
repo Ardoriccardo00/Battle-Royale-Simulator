@@ -3,14 +3,15 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - CameraController
     - Chest
+    - GameManager
     - Health
     - KillFeed
     - LookAtCAmera
     - MatchManager
-    - MouseLook
     - PlayerController
     - PlayerIdentity
     - PlayerProfile
+    - PlayerStatsTXT
     - SceneActions
     Unity.Postprocessing.Runtime.dll:
     - UnityEngine.Rendering.PostProcessing.AmbientOcclusion
@@ -132,8 +133,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11912}
     - Class: 114
-      Script: {instanceID: 11922}
-    - Class: 114
       Script: {instanceID: 11924}
     - Class: 114
       Script: {instanceID: 12108}
@@ -144,31 +143,35 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12200}
     - Class: 114
-      Script: {instanceID: 12330}
+      Script: {instanceID: 12290}
     - Class: 114
-      Script: {instanceID: 12430}
+      Script: {instanceID: 12332}
     - Class: 114
-      Script: {instanceID: 12570}
+      Script: {instanceID: 12432}
     - Class: 114
-      Script: {instanceID: 12584}
+      Script: {instanceID: 12572}
     - Class: 114
-      Script: {instanceID: 12794}
+      Script: {instanceID: 12586}
     - Class: 114
-      Script: {instanceID: 12866}
+      Script: {instanceID: 12796}
     - Class: 114
-      Script: {instanceID: 13038}
+      Script: {instanceID: 12868}
     - Class: 114
-      Script: {instanceID: 13138}
+      Script: {instanceID: 13040}
     - Class: 114
-      Script: {instanceID: 13160}
+      Script: {instanceID: 13140}
     - Class: 114
-      Script: {instanceID: 13176}
+      Script: {instanceID: 13162}
     - Class: 114
-      Script: {instanceID: 13186}
+      Script: {instanceID: 13178}
     - Class: 114
-      Script: {instanceID: 13274}
+      Script: {instanceID: 13188}
     - Class: 114
-      Script: {instanceID: 14504}
+      Script: {instanceID: 13276}
+    - Class: 114
+      Script: {instanceID: 16676}
+    - Class: 114
+      Script: {instanceID: 17206}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -600,6 +603,12 @@ ScriptsOnlyBuild:
     className: RemoteTestResultSender
   - hash:
       serializedVersion: 2
+      Hash: e5607ca8f668711283b9f48be6a9d1c9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: KillFeed
+  - hash:
+      serializedVersion: 2
       Hash: 50c443b12ccc0b475183318b5088bcc5
     assemblyName: Unity.Postprocessing.Runtime.dll
     namespaceName: UnityEngine.Rendering.PostProcessing
@@ -996,10 +1005,22 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
-      Hash: e5607ca8f668711283b9f48be6a9d1c9
+      Hash: c76122bfbd30170699d48113e1fab5a4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: KillFeed
+    className: ReadTXT
+  - hash:
+      serializedVersion: 2
+      Hash: 8fdc557d21a0418ca1cb6dfb18e76ac0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameManager
+  - hash:
+      serializedVersion: 2
+      Hash: 50c220252f68e4c8a3cf0d13eebba7b3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerStatsTXT
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity

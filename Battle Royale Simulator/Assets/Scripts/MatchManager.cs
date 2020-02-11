@@ -31,7 +31,6 @@ public class MatchManager : MonoBehaviour
     [SerializeField] Button[] scoreBoardsButtons;
     bool firstBlood = false;
     bool matchHasStarted = false;
-
     
     List<PlayerIdentity> playersList = new List<PlayerIdentity>();
 
@@ -55,11 +54,6 @@ public class MatchManager : MonoBehaviour
             playerToInstantiate.profile = profiles[i];
             playersList.Add(playerToInstantiate);
         }
-    }
-
-    void SpawnWithTxt()
-    {
-
     }
 
     private void Update()

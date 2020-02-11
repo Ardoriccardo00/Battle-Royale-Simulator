@@ -16,7 +16,8 @@ public class PlayerController : MonoBehaviour
     float distanceToNextPlayer = Mathf.Infinity;
     float distanceToNextChest = Mathf.Infinity;
     float turnSpeed = 10;
-    PlayerIdentity identity;
+    //PlayerIdentity identity;
+    PlayerStatsTXT identity;
 
     [SerializeField] int damage = 2;
 
@@ -26,7 +27,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         interactRange = agent.stoppingDistance;
         centerPosition = new Vector3(0, 0, 0);
-        identity = GetComponent<PlayerIdentity>();
+        identity = GetComponent<PlayerStatsTXT>();
     }
   
     void Update()
@@ -134,8 +135,8 @@ public class PlayerController : MonoBehaviour
 
         if (target.TakeDamage(damage))
         {
-            KillFeed.Instance.AddKillFeedItem(identity.ReturnPlayerName(), target.GetComponent<PlayerIdentity>().ReturnPlayerName());
-            //print(identity.ReturnPlayerName() + " has killed " + target.GetComponent<PlayerIdentity>().ReturnPlayerName());
+            //KillFeed.Instance.AddKillFeedItemIdentity(identity.ReturnPlayerName(), target.GetComponent<PlayerIdentity>().ReturnPlayerName());
+            KillFeed.Instance.AddKillFeedItem(identity.ReturnPlayerName(), target.GetComponent<PlayerStatsTXT>().ReturnPlayerName());
             identity.AddKills();
         }
     }
