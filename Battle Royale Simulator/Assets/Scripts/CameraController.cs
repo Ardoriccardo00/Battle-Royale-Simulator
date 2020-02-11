@@ -7,26 +7,39 @@ public class CameraController : MonoBehaviour
     public LayerMask movementMask;
     Camera cam;
     [SerializeField] float moveSpeed = 10;
-    [SerializeField] Vector3 originalPos;
+
+    Vector3 originalPos;
+    Quaternion originalRot;
+
     GameObject playerTarget;
     bool isFreeView = false;
+    bool canMoveToOriginalPos;
+    bool isFirstPerson = true;
 
     void Start()
     {
         cam = Camera.main;
+        originalPos = transform.position;
+        originalRot = transform.rotation;
     }
 
     void Update()
     {
         SetTarget();
-        if (!isFreeView)
+        if (!isFreeView && !canMoveToOriginalPos)
         {
             if (playerTarget != null)
-            {            
-                LookTarget();
+            {
+                if (!isFirstPerson) LookTarget();
+                else transform.rotation = playerTarget.transform.rotation;
                 MoveToTarget();
             }
         }
+        else if(!isFreeView && canMoveToOriginalPos)
+        {
+            MoveToOriginalPos();
+        }
+
         else
         {
             GetKeyBoardInput();
@@ -83,19 +96,39 @@ public class CameraController : MonoBehaviour
 
     void MoveToTarget()
     {
-        Vector3 newPosition = playerTarget.transform.position - new Vector3(10, -10, 10);
+        Vector3 newPosition;
+
+        if (!isFirstPerson)
+        {
+            newPosition = playerTarget.transform.position - new Vector3(10, -10, 10);
+        }
+        else
+        {
+            newPosition = playerTarget.transform.position;
+        }
+            
         transform.position = Vector3.MoveTowards(transform.position, newPosition, moveSpeed);
-        //transform.position = Vector3.MoveTowards(transform.position, playerTarget.transform.position, moveSpeed);
     }
 
     public void MoveToOriginalPos()
     {
-        playerTarget = null;
-        transform.position = originalPos;
+        transform.rotation = originalRot;
+        if(transform.position != originalPos)
+        {
+            canMoveToOriginalPos = true;
+            playerTarget = null;
+            transform.position = Vector3.MoveTowards(transform.position, originalPos, moveSpeed);
+        }
+        else canMoveToOriginalPos = false;
     }
 
     public void SetIsFree(bool value)
     {
         isFreeView = value;
+    }
+
+    public void ToggleFirstPerson(bool value)
+    {
+        isFirstPerson = value;
     }
 }

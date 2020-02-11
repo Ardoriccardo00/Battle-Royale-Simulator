@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     float distanceToNextPlayer = Mathf.Infinity;
     float distanceToNextChest = Mathf.Infinity;
     float turnSpeed = 10;
+    PlayerIdentity identity;
 
     [SerializeField] int damage = 2;
 
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         interactRange = agent.stoppingDistance;
         centerPosition = new Vector3(0, 0, 0);
+        identity = GetComponent<PlayerIdentity>();
     }
   
     void Update()
@@ -58,7 +60,7 @@ public class PlayerController : MonoBehaviour
             if (distanceToNextPlayer <= agent.stoppingDistance)
             {
                 FacePlayer();
-                StartAttack();
+                StartCoroutine(Attack());
             }
         }
         else if(nextPlayer == null && nextChest != null)
@@ -78,37 +80,6 @@ public class PlayerController : MonoBehaviour
             agent.SetDestination(centerPosition);
         }
     }
-
-    /*private void MoveToTarget()
-    {
-        if(nextPlayer != null)
-        {
-            distanceToNextPlayer = Vector3.Distance(nextPlayer.transform.position, transform.position);
-            agent.SetDestination(nextPlayer.transform.position);
-            if(distanceToNextPlayer <= agent.stoppingDistance)
-            {
-                print("going to attack" + nextPlayer);
-                FacePlayer();
-                StartAttack();
-            }
-        }
-
-        if (nextPlayer == null)
-        {
-            nextPlayer = null;
-        }
-
-        else if (nextChest != null)
-        {
-            if (!ReturnChestPosition())
-            {
-                agent.SetDestination(nextChest.transform.position);
-            }
-            else Destroy(nextChest.gameObject);
-        }
-
-        else agent.SetDestination(centerPosition);
-    }*/
 
     void LookForPlayer()
     {
@@ -146,10 +117,6 @@ public class PlayerController : MonoBehaviour
     }
 
     #region Attack
-    void StartAttack()
-    {
-        StartCoroutine(Attack());
-    }
 
     IEnumerator Attack()
     {
@@ -167,7 +134,8 @@ public class PlayerController : MonoBehaviour
 
         if (target.TakeDamage(damage))
         {
-            GetComponent<PlayerIdentity>().AddKills();
+            print(identity.ReturnPlayerName() + " has killed " + target.GetComponent<PlayerIdentity>().ReturnPlayerName());
+            identity.AddKills();
         }
     }
     #endregion
@@ -191,3 +159,34 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, interactRange);
     }
 }
+
+/*private void MoveToTarget()
+    {
+        if(nextPlayer != null)
+        {
+            distanceToNextPlayer = Vector3.Distance(nextPlayer.transform.position, transform.position);
+            agent.SetDestination(nextPlayer.transform.position);
+            if(distanceToNextPlayer <= agent.stoppingDistance)
+            {
+                print("going to attack" + nextPlayer);
+                FacePlayer();
+                StartAttack();
+            }
+        }
+
+        if (nextPlayer == null)
+        {
+            nextPlayer = null;
+        }
+
+        else if (nextChest != null)
+        {
+            if (!ReturnChestPosition())
+            {
+                agent.SetDestination(nextChest.transform.position);
+            }
+            else Destroy(nextChest.gameObject);
+        }
+
+        else agent.SetDestination(centerPosition);
+    }*/

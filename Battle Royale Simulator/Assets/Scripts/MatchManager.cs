@@ -19,9 +19,9 @@ public class MatchManager : MonoBehaviour
     
     List<PlayerIdentity> playersList = new List<PlayerIdentity>();
 
-    void Awake()
+    void Start()
     {
-        winnerText.text = "";     
+        winnerText.text = "";
     }
 
     public void SpawnWithProfiles()
@@ -37,21 +37,13 @@ public class MatchManager : MonoBehaviour
 
             PlayerIdentity playerToInstantiate = Instantiate(playerPrefab, spawnPosition, playerPrefab.transform.rotation).GetComponent<PlayerIdentity>();
             playerToInstantiate.profile = profiles[i];
+            playersList.Add(playerToInstantiate);
         }
     }
 
     void SpawnWithTxt()
     {
 
-    }
-
-    private void Start()
-    {
-        PlayerIdentity[] playersArray = FindObjectsOfType<PlayerIdentity>();
-        foreach (PlayerIdentity player in playersArray)
-        {
-            playersList.Add(player);            
-        }
     }
 
     private void Update()
