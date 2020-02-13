@@ -8,25 +8,32 @@ using System;
 public class PlayerStatsTXT : MonoBehaviour
 {
     [Header("Stats")]
-    [SerializeField] string playerName;
-    [SerializeField] int kills = 0;
+    string playerName;
+    int kills = 0;
 
     [Header("Components")]
     [SerializeField] TextMeshProUGUI playerNameText;
-    [SerializeField] TextMeshProUGUI playerHealthText;
     [SerializeField] TextMeshProUGUI playerKillsText;
+    [SerializeField] Slider healthSlider;
+
     Health health;
+
+    [SerializeField] Gradient healthGradient;
+    [SerializeField] Image fill;
 
     private void Start()
     {
         health = GetComponent<Health>();
+        healthSlider.maxValue = health.ReturnMaxHealth();
+        fill.color = healthGradient.Evaluate(1f);
     }
 
     void Update()
     {
-        playerHealthText.text = "Health: " + Convert.ToString(health.ReturnHealth());
         playerNameText.text = playerName;
         playerKillsText.text = "Kills: " + kills;
+        healthSlider.value = health.ReturnHealth();
+        fill.color = healthGradient.Evaluate(healthSlider.normalizedValue);
     }
 
     public string ReturnPlayerName()

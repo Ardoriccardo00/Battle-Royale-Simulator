@@ -51,4 +51,9 @@ public class Health : MonoBehaviour
         GameManager.Instance.RemovePlayer(GetComponent<PlayerStatsTXT>());
         Destroy(gameObject);
     }
+
+    public int ReturnMaxHealth()
+    {
+        return maxHealth;
+    }
 }

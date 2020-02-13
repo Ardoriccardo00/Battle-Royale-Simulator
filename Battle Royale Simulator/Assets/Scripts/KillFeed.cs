@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class KillFeed : MonoBehaviour
 {
@@ -39,6 +40,7 @@ public class KillFeed : MonoBehaviour
         Destroy(item, 3);
         item.transform.SetParent(transform);
         TextMeshProUGUI text = item.GetComponentInChildren<TextMeshProUGUI>();
-        text.text = "<b><color=green>" + killer + "</color></b> <color=red>" + "has killed </color> <b><color=blue>" + victim + "</color></b>";
+        //text.text = "<b><color=green>" + killer + "</color></b> <color=red>" + "has killed </color> <b><color=blue>" + victim + "</color></b>";
+        text.text = killer + " has killed " + victim;
     }
 }

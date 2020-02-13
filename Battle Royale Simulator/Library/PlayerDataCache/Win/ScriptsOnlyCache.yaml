@@ -59,6 +59,8 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.LayoutElement
     - UnityEngine.UI.Mask
     - UnityEngine.UI.ScrollRect
+    - UnityEngine.UI.Slider
+    - UnityEngine.UI.Text
     - UnityEngine.UI.VerticalLayoutGroup
   sceneClasses:
     Assets/Scenes/SampleScene.unity:
@@ -105,73 +107,77 @@ ScriptsOnlyBuild:
     - Class: 109
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11214}
+      Script: {instanceID: 11216}
     - Class: 114
-      Script: {instanceID: 11234}
+      Script: {instanceID: 11242}
     - Class: 114
-      Script: {instanceID: 11272}
+      Script: {instanceID: 11292}
     - Class: 114
-      Script: {instanceID: 11310}
+      Script: {instanceID: 11338}
     - Class: 114
-      Script: {instanceID: 11354}
+      Script: {instanceID: 11408}
     - Class: 114
-      Script: {instanceID: 11458}
+      Script: {instanceID: 11484}
     - Class: 114
-      Script: {instanceID: 11576}
+      Script: {instanceID: 11538}
     - Class: 114
-      Script: {instanceID: 11584}
+      Script: {instanceID: 11696}
     - Class: 114
-      Script: {instanceID: 11594}
+      Script: {instanceID: 11704}
     - Class: 114
-      Script: {instanceID: 11788}
+      Script: {instanceID: 11716}
     - Class: 114
-      Script: {instanceID: 11790}
+      Script: {instanceID: 11952}
     - Class: 114
-      Script: {instanceID: 11806}
+      Script: {instanceID: 11954}
     - Class: 114
-      Script: {instanceID: 11890}
+      Script: {instanceID: 11970}
     - Class: 114
-      Script: {instanceID: 11912}
+      Script: {instanceID: 12084}
     - Class: 114
-      Script: {instanceID: 11924}
+      Script: {instanceID: 12110}
     - Class: 114
-      Script: {instanceID: 12108}
+      Script: {instanceID: 12124}
     - Class: 114
-      Script: {instanceID: 12128}
+      Script: {instanceID: 12204}
     - Class: 114
-      Script: {instanceID: 12176}
+      Script: {instanceID: 12360}
     - Class: 114
-      Script: {instanceID: 12200}
+      Script: {instanceID: 12382}
     - Class: 114
-      Script: {instanceID: 12290}
+      Script: {instanceID: 12442}
     - Class: 114
-      Script: {instanceID: 12332}
+      Script: {instanceID: 12476}
     - Class: 114
-      Script: {instanceID: 12432}
+      Script: {instanceID: 12600}
     - Class: 114
-      Script: {instanceID: 12572}
+      Script: {instanceID: 12654}
     - Class: 114
-      Script: {instanceID: 12586}
+      Script: {instanceID: 12774}
     - Class: 114
-      Script: {instanceID: 12796}
+      Script: {instanceID: 12960}
     - Class: 114
-      Script: {instanceID: 12868}
+      Script: {instanceID: 12974}
     - Class: 114
-      Script: {instanceID: 13040}
+      Script: {instanceID: 13114}
     - Class: 114
-      Script: {instanceID: 13140}
+      Script: {instanceID: 13252}
     - Class: 114
-      Script: {instanceID: 13162}
+      Script: {instanceID: 13342}
     - Class: 114
-      Script: {instanceID: 13178}
+      Script: {instanceID: 13572}
     - Class: 114
-      Script: {instanceID: 13188}
+      Script: {instanceID: 13690}
     - Class: 114
-      Script: {instanceID: 13276}
+      Script: {instanceID: 13714}
     - Class: 114
-      Script: {instanceID: 16676}
+      Script: {instanceID: 13732}
     - Class: 114
-      Script: {instanceID: 17206}
+      Script: {instanceID: 13748}
+    - Class: 114
+      Script: {instanceID: 13866}
+    - Class: 114
+      Script: {instanceID: 13910}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -465,6 +471,12 @@ ScriptsOnlyBuild:
     className: WarpTextExample
   - hash:
       serializedVersion: 2
+      Hash: c76122bfbd30170699d48113e1fab5a4
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ReadTXT
+  - hash:
+      serializedVersion: 2
       Hash: 7e6ed836cbaa230e56d6a2bbae1b9bb5
     assemblyName: Unity.Postprocessing.Runtime.dll
     namespaceName: UnityEngine.Rendering.PostProcessing
@@ -529,6 +541,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
     className: Benchmark01
+  - hash:
+      serializedVersion: 2
+      Hash: 3759a10e8b20b226d5b52f69b77c3f00
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerStatsTXT
   - hash:
       serializedVersion: 2
       Hash: 61b9d9b6f4b6a222dfea8b131b3d3227
@@ -733,6 +751,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
     className: SimpleScript
+  - hash:
+      serializedVersion: 2
+      Hash: 2cacddadc6cf1bc6537d9aa67b1ab8f6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameManager
   - hash:
       serializedVersion: 2
       Hash: 274152c972478468d8321a977bbca8e3
@@ -1003,24 +1027,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: c76122bfbd30170699d48113e1fab5a4
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ReadTXT
-  - hash:
-      serializedVersion: 2
-      Hash: 8fdc557d21a0418ca1cb6dfb18e76ac0
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: GameManager
-  - hash:
-      serializedVersion: 2
-      Hash: 50c220252f68e4c8a3cf0d13eebba7b3
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: PlayerStatsTXT
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
