@@ -78,7 +78,7 @@
     <Compile Include="Assets\Scripts\PlayerStatsTXT.cs" />
     <Compile Include="Assets\Scripts\ReadTXT.cs" />
     <Compile Include="Assets\Scripts\SceneActions.cs" />
-    <Compile Include="Assets\Scripts\Test\OpenFile.cs" />
+    <Compile Include="Assets\Scripts\UI\ScoreBoardButton.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />

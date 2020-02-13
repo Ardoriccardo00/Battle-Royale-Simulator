@@ -134,4 +134,9 @@ public class CameraController : MonoBehaviour
     {
         isFirstPerson = value;
     }
+
+    public void SetTargetExternally(GameObject target)
+    {
+        playerTarget = target;
+    }
 }

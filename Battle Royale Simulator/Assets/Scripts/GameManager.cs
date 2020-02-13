@@ -8,7 +8,7 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
-    #region Singleton
+#region Singleton
     public static GameManager Instance { get; private set; }
     void Awake()
     {
@@ -22,45 +22,39 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    #endregion
+#endregion
 
     [Header("Components")]
     [SerializeField] GameObject playerPrefab;
     [SerializeField] GameObject chestPrefab;
     [SerializeField] TextMeshProUGUI winnerText;
     [SerializeField] TextMeshProUGUI playersAliveText;
-    [SerializeField] Button[] scoreBoardsButtons;
-
-    [SerializeField] Text test;
+    [SerializeField] ScoreBoardButton[] scoreBoardsButtons;
     
     [Header("Variables")]
     [SerializeField] Vector3 worldSize;
     bool firstBlood = false;
     bool matchHasStarted = false;
 
-    public List<string> stringList; /*= new List<string>();*/
+    public List<string> stringList;
     public List<PlayerStatsTXT> playersList = new List<PlayerStatsTXT>();
-
-    List<string> someList = new List<string>();
-
-    /*[SerializeField] AssetReference txtFile;
-    [SerializeField] TextAsset txt;*/
 
     void Start()
     {
-        someList.Add("ciao");
-        someList.Add("aaaaa");
         Load();
 
-        //Clear the list when the scene is loaded
-        /*foreach(string name in stringList)
-        {
-            stringList.Remove(name);
-        }*/
-
         winnerText.text = "";
-        /*TextAsset txt = (TextAsset)Resources.Load("names", typeof(TextAsset));
-        stringList = new List<string>(txt.text.Split('\n')); //.text.split*/
+
+        /*for(int i = 0; i < scoreBoardsButtons.Length; i++)
+        {
+            scoreBoardsButtons[i].GetComponent<ScoreBoardButton>();
+        }*/
+    }
+
+#region LoadFile
+    private class SaveObject
+    {
+        public List<string> txtFileContent;
     }
 
     void Load()
@@ -72,20 +66,13 @@ public class GameManager : MonoBehaviour
 
             SaveObject saveObject = JsonUtility.FromJson<SaveObject>(saveString);
 
-            saveObject.txtFileContent.Add("ciao");
-            saveObject.txtFileContent.Add("AAAAA");
-
             stringList = saveObject.txtFileContent;
         }
         else print("no savr");
     }
-
+#endregion
     void Update()
     {
-        //if(Input.GetKeyDown(KeyCode.S)) Save();
-
-        if(Input.GetKeyDown(KeyCode.L)) Load();
-
         if (matchHasStarted)
         {
             CheckForPlayers();
@@ -95,12 +82,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /*void LoadDone(UnityEngine.AsyncOperation.IAsyncoperations<TextAsset> obj)
-    {
-        txt = obj.result;
-        print("finish load asset");
-    }*/
-
+#region Spawning
     public void SpawnWithTxt()
     {
         matchHasStarted = true;
@@ -139,6 +121,7 @@ public class GameManager : MonoBehaviour
             Instantiate(chestPrefab, spawnPosition, chestPrefab.transform.rotation);
         }
     }
+    #endregion
 
     void CheckForPlayers()
     {
@@ -161,18 +144,11 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < scoreBoardsButtons.Length; i++)
         {
-            try
-            {
-                TextMeshProUGUI buttonText = scoreBoardsButtons[i].GetComponentInChildren<TextMeshProUGUI>();
-
-                buttonText.text = playersList[i].ReturnPlayerName()
-                    + " "
-                    + playersList[i].ReturnKills();
-            }
-            catch { }
+            scoreBoardsButtons[i].SetPlayerToTarget(playersList[i]);
         }
     }
 
+#region Public Functions
     public void RemovePlayer(PlayerStatsTXT player)
     {
         playersList.Remove(player);
@@ -183,29 +159,23 @@ public class GameManager : MonoBehaviour
         matchHasStarted = value;
     }
 
+    public bool ReturnMatchHasStarted()
+    {
+        return matchHasStarted;
+    }
+
+    public int ReturnNumberPlayersAlive()
+    {
+        return playersList.Count;
+    }
+
+    #endregion
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawCube(new Vector3(0, 0, 0), worldSize);
     }
 
-    void Save()
-    {
-        print(Application.dataPath);
-        SaveObject saveObject = new SaveObject
-        {
-            txtFileContent = someList
-        };
-        string json = JsonUtility.ToJson(saveObject);
-        string path = Application.dataPath + "/names.txt";
-        File.WriteAllText(path, json);
-        test.text = path;
-    }
-
-
-
-    private class SaveObject
-    {
-        public List<string> txtFileContent;       
-    }
+    
 }
