@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 
     Chest nextChest;
     [SerializeField] PlayerController nextPlayer;
+    [SerializeField] PlayerStatsTXT stats;
     float distanceToNextPlayer = Mathf.Infinity;
     float distanceToNextChest = Mathf.Infinity;
     float turnSpeed = 10;
@@ -70,6 +71,7 @@ public class PlayerController : MonoBehaviour
             distanceToNextChest = Vector3.Distance(nextChest.transform.position, transform.position);
             if(distanceToNextChest <= agent.stoppingDistance)
             {
+                //stats.SetWeapon(nextChest.GiveWeapon());
                 Destroy(nextChest.gameObject);
             }
             agent.SetDestination(nextChest.transform.position);

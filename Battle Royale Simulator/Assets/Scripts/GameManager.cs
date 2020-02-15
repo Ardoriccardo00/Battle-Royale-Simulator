@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     [Header("Components")]
     [SerializeField] GameObject playerPrefab;
     [SerializeField] GameObject chestPrefab;
+
+    [Header("UI Components")]
     [SerializeField] TextMeshProUGUI winnerText;
     [SerializeField] TextMeshProUGUI playersAliveText;
     [SerializeField] ScoreBoardButton[] scoreBoardsButtons;
@@ -37,24 +39,35 @@ public class GameManager : MonoBehaviour
     bool matchHasStarted = false;
 
     public List<string> stringList;
+    public List<Color> colorList;
     public List<PlayerStatsTXT> playersList = new List<PlayerStatsTXT>();
 
     void Start()
     {
         Load();
-
         winnerText.text = "";
-
-        /*for(int i = 0; i < scoreBoardsButtons.Length; i++)
-        {
-            scoreBoardsButtons[i].GetComponent<ScoreBoardButton>();
-        }*/
     }
 
 #region LoadFile
     private class SaveObject
     {
-        public List<string> txtFileContent;
+        public List<string> namesFromTxt;
+        public List<Color> colorsFromTxt;
+    }
+
+    void Save()
+    {
+        print(Application.dataPath);
+
+        SaveObject saveObject = new SaveObject
+        {
+            //colorsFromTxt = someList
+        };
+
+        string json = JsonUtility.ToJson(saveObject);
+        string path = Application.dataPath + "/names.txt";
+        File.WriteAllText(path, json);
+        print(saveObject.colorsFromTxt);
     }
 
     void Load()
@@ -66,17 +79,22 @@ public class GameManager : MonoBehaviour
 
             SaveObject saveObject = JsonUtility.FromJson<SaveObject>(saveString);
 
-            stringList = saveObject.txtFileContent;
+            stringList = saveObject.namesFromTxt;
+            colorList = saveObject.colorsFromTxt;
+            foreach(Color color in colorList)
+            {
+                print(color);
+            }
         }
         else print("no savr");
     }
 #endregion
+
     void Update()
     {
         if (matchHasStarted)
         {
             CheckForPlayers();
-            playersList.Sort((x, y) => y.ReturnKills().CompareTo(x.ReturnKills()));
             UpdateScoreboard();
             if (firstBlood == false) CheckFirstBlood();
         }
@@ -87,8 +105,6 @@ public class GameManager : MonoBehaviour
     {
         matchHasStarted = true;
 
-        SpawnChests();
-
         for (int i = 0; i < stringList.Count; i++)
         {
             float x, y, z;
@@ -96,17 +112,19 @@ public class GameManager : MonoBehaviour
             y = UnityEngine.Random.Range(-worldSize.y / 2, worldSize.y / 2);
             z = UnityEngine.Random.Range(-worldSize.z / 2, worldSize.z / 2);
 
-            Vector3 spawnPosition = new Vector3(x, 1, z);
+            Vector3 spawnPosition = new Vector3(x, .5f, z);
 
             PlayerStatsTXT playerToInstantiate = Instantiate(playerPrefab, spawnPosition, playerPrefab.transform.rotation).GetComponent<PlayerStatsTXT>();
+            var playerMaterial = playerToInstantiate.GetComponent<MeshRenderer>();
             playerToInstantiate.SetPlayerName(stringList[i]);
+            playerMaterial.material.color = colorList[UnityEngine.Random.Range(0,colorList.Count)];
             playersList.Add(playerToInstantiate);
         }
     }
 
-    void SpawnChests()
+    public void SpawnChests()
     {
-        int maxNumber = UnityEngine.Random.Range(3, stringList.Count / 3);
+        int maxNumber = UnityEngine.Random.Range(stringList.Count/4 + 1, stringList.Count - stringList.Count/2);
         maxNumber = Mathf.RoundToInt(maxNumber);
 
         for (int i = 0; i < maxNumber; i++)
@@ -142,10 +160,14 @@ public class GameManager : MonoBehaviour
 
     void UpdateScoreboard()
     {
+        playersList.Sort((x, y) => y.ReturnKills().CompareTo(x.ReturnKills()));
+
         for (int i = 0; i < scoreBoardsButtons.Length; i++)
         {
             scoreBoardsButtons[i].SetPlayerToTarget(playersList[i]);
         }
+
+        playersAliveText.text = "Remaining players: " + Convert.ToString(playersList.Count);
     }
 
 #region Public Functions
@@ -176,6 +198,4 @@ public class GameManager : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawCube(new Vector3(0, 0, 0), worldSize);
     }
-
-    
 }

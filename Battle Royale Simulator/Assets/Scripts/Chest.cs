@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Weapon weapon;
 
-    // Update is called once per frame
-    void Update()
+    public Weapon GiveWeapon()
     {
-        
+        return weapon;
     }
 }

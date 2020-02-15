@@ -7,12 +7,10 @@ ScriptsOnlyBuild:
     - Health
     - KillFeed
     - LookAtCAmera
-    - MatchManager
     - PlayerController
-    - PlayerIdentity
-    - PlayerProfile
     - PlayerStatsTXT
     - SceneActions
+    - ScoreBoardButton
     Unity.Postprocessing.Runtime.dll:
     - UnityEngine.Rendering.PostProcessing.AmbientOcclusion
     - UnityEngine.Rendering.PostProcessing.AutoExposure
@@ -60,7 +58,6 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Mask
     - UnityEngine.UI.ScrollRect
     - UnityEngine.UI.Slider
-    - UnityEngine.UI.Text
     - UnityEngine.UI.VerticalLayoutGroup
   sceneClasses:
     Assets/Scenes/SampleScene.unity:
@@ -109,75 +106,69 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11216}
     - Class: 114
-      Script: {instanceID: 11242}
+      Script: {instanceID: 11236}
     - Class: 114
-      Script: {instanceID: 11292}
+      Script: {instanceID: 11312}
     - Class: 114
-      Script: {instanceID: 11338}
+      Script: {instanceID: 11356}
     - Class: 114
-      Script: {instanceID: 11408}
+      Script: {instanceID: 11460}
     - Class: 114
-      Script: {instanceID: 11484}
+      Script: {instanceID: 11576}
     - Class: 114
-      Script: {instanceID: 11538}
+      Script: {instanceID: 11584}
     - Class: 114
-      Script: {instanceID: 11696}
+      Script: {instanceID: 11594}
     - Class: 114
-      Script: {instanceID: 11704}
+      Script: {instanceID: 11788}
     - Class: 114
-      Script: {instanceID: 11716}
+      Script: {instanceID: 11790}
     - Class: 114
-      Script: {instanceID: 11952}
+      Script: {instanceID: 11806}
     - Class: 114
-      Script: {instanceID: 11954}
+      Script: {instanceID: 11892}
     - Class: 114
-      Script: {instanceID: 11970}
+      Script: {instanceID: 11914}
     - Class: 114
-      Script: {instanceID: 12084}
+      Script: {instanceID: 11926}
     - Class: 114
-      Script: {instanceID: 12110}
+      Script: {instanceID: 11996}
     - Class: 114
-      Script: {instanceID: 12124}
+      Script: {instanceID: 12112}
     - Class: 114
-      Script: {instanceID: 12204}
+      Script: {instanceID: 12180}
     - Class: 114
-      Script: {instanceID: 12360}
+      Script: {instanceID: 12206}
     - Class: 114
-      Script: {instanceID: 12382}
+      Script: {instanceID: 12296}
+    - Class: 114
+      Script: {instanceID: 12298}
+    - Class: 114
+      Script: {instanceID: 12342}
     - Class: 114
       Script: {instanceID: 12442}
     - Class: 114
-      Script: {instanceID: 12476}
+      Script: {instanceID: 12582}
     - Class: 114
-      Script: {instanceID: 12600}
+      Script: {instanceID: 12596}
     - Class: 114
-      Script: {instanceID: 12654}
+      Script: {instanceID: 12696}
     - Class: 114
-      Script: {instanceID: 12774}
+      Script: {instanceID: 12808}
     - Class: 114
-      Script: {instanceID: 12960}
+      Script: {instanceID: 12880}
     - Class: 114
-      Script: {instanceID: 12974}
+      Script: {instanceID: 13052}
     - Class: 114
-      Script: {instanceID: 13114}
+      Script: {instanceID: 13152}
     - Class: 114
-      Script: {instanceID: 13252}
+      Script: {instanceID: 13174}
     - Class: 114
-      Script: {instanceID: 13342}
+      Script: {instanceID: 13190}
     - Class: 114
-      Script: {instanceID: 13572}
+      Script: {instanceID: 13288}
     - Class: 114
-      Script: {instanceID: 13690}
-    - Class: 114
-      Script: {instanceID: 13714}
-    - Class: 114
-      Script: {instanceID: 13732}
-    - Class: 114
-      Script: {instanceID: 13748}
-    - Class: 114
-      Script: {instanceID: 13866}
-    - Class: 114
-      Script: {instanceID: 13910}
+      Script: {instanceID: 13324}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -261,7 +252,7 @@ ScriptsOnlyBuild:
     className: TMP_Dropdown
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 0ecbeaedf15a8a49556fdbcecb621b41
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Chest
@@ -349,12 +340,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_InputField
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: OpenFile
   - hash:
       serializedVersion: 2
       Hash: 7ab0e790220bdca831fdd886b339039d
@@ -543,7 +528,7 @@ ScriptsOnlyBuild:
     className: Benchmark01
   - hash:
       serializedVersion: 2
-      Hash: 3759a10e8b20b226d5b52f69b77c3f00
+      Hash: c801f65309cfd102769f1170fd9c2605
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerStatsTXT
@@ -591,6 +576,12 @@ ScriptsOnlyBuild:
     className: SceneActions
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Bullet
+  - hash:
+      serializedVersion: 2
       Hash: e63944317d2f5958e31963668bb29158
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
@@ -621,10 +612,22 @@ ScriptsOnlyBuild:
     className: RemoteTestResultSender
   - hash:
       serializedVersion: 2
+      Hash: 08e3758b91d1fe5d65c5ed15a462cc80
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ScoreBoardButton
+  - hash:
+      serializedVersion: 2
       Hash: e5607ca8f668711283b9f48be6a9d1c9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: KillFeed
+  - hash:
+      serializedVersion: 2
+      Hash: 5ede9dc096c7fabc8e6c55f0d4cbbe5d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Weapon
   - hash:
       serializedVersion: 2
       Hash: 50c443b12ccc0b475183318b5088bcc5
@@ -753,7 +756,7 @@ ScriptsOnlyBuild:
     className: SimpleScript
   - hash:
       serializedVersion: 2
-      Hash: 2cacddadc6cf1bc6537d9aa67b1ab8f6
+      Hash: 2863ca1f3173283e60c71ffdf02ebabe
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -915,7 +918,7 @@ ScriptsOnlyBuild:
     className: VertexShakeA
   - hash:
       serializedVersion: 2
-      Hash: 3b68001ac2a47514b4eb9a8f7ac6f57e
+      Hash: b4a49106d02835531b440c38e7601ccc
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController
