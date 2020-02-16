@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Camera\MouseLook.cs" />
     <Compile Include="Assets\Scripts\Chest.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\MapCenter.cs" />
     <Compile Include="Assets\Scripts\Old\MatchManager.cs" />
     <Compile Include="Assets\Scripts\Old\ReadTXT.cs" />
     <Compile Include="Assets\Scripts\Old\SceneActions.cs" />

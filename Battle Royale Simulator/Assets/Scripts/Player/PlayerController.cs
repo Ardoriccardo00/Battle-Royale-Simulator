@@ -35,22 +35,27 @@ public class PlayerController : MonoBehaviour
     {
         LookForChest();
         MoveToTarget();
+        print(agent.destination);
     }
 
     void LookForChest()
     {
-        float distanceToClosestChest = Mathf.Infinity;
-        Chest[] allChests = GameObject.FindObjectsOfType<Chest>();
-
-        foreach (Chest currentChest in allChests)
+        if(allChests.Length > 0)
         {
-            float distanceToChest = (currentChest.transform.position - this.transform.position).sqrMagnitude;
-            if (distanceToChest < distanceToClosestChest)
+            float distanceToClosestChest = Mathf.Infinity;
+            Chest[] allChests = GameObject.FindObjectsOfType<Chest>();
+
+            foreach(Chest currentChest in allChests)
             {
-                distanceToClosestChest = distanceToChest;
-                nextChest = currentChest;
+                float distanceToChest = (currentChest.transform.position - transform.position).sqrMagnitude;
+                if(distanceToChest < distanceToClosestChest)
+                {
+                    distanceToClosestChest = distanceToChest;
+                    nextChest = currentChest;
+                }
             }
         }
+        else print("no chests");
     }
 
     private void MoveToTarget()
@@ -65,7 +70,28 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(Attack());
             }
         }
-        else if(nextPlayer == null && nextChest != null)
+
+        else
+        {
+            if(nextChest != null)
+            {
+                nextPlayer = null;
+                distanceToNextChest = Vector3.Distance(nextChest.transform.position, transform.position);
+
+                if(distanceToNextChest <= agent.stoppingDistance)
+                {
+                    //stats.SetWeapon(nextChest.GiveWeapon());
+                    Destroy(nextChest.gameObject);
+                }
+                agent.SetDestination(nextChest.transform.position);
+            }
+            else
+            {
+                nextPlayer = null;
+                agent.SetDestination(centerPosition);
+            }
+        }
+        /*else if(nextPlayer == null && nextChest != null)
         {
             nextPlayer = null;
             distanceToNextChest = Vector3.Distance(nextChest.transform.position, transform.position);
@@ -81,7 +107,7 @@ public class PlayerController : MonoBehaviour
         {
             nextPlayer = null;
             agent.SetDestination(centerPosition);
-        }
+        }*/
     }
 
     void LookForPlayer()

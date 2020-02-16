@@ -18,8 +18,11 @@ public class ScoreBoardButton : MonoBehaviour
 
     private void LateUpdate()
     {
-        if(GameManager.Instance.ReturnMatchHasStarted())
-            buttonText.text = targetPlayer.ReturnPlayerName() + " " + targetPlayer.ReturnKills();
+        if(targetPlayer)
+        {
+            if(GameManager.Instance.ReturnMatchHasStarted())
+                buttonText.text = targetPlayer.ReturnPlayerName() + " " + targetPlayer.ReturnKills();
+        }       
     }
 
     public void SetPlayerToTarget(PlayerStatsTXT player)

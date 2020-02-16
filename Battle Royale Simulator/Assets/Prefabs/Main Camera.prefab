@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7717937753790871130}
   - component: {fileID: 7717937753790871133}
+  - component: {fileID: 3698864395135869102}
   - component: {fileID: 7717937753790871132}
   - component: {fileID: 7717937753790871131}
-  - component: {fileID: 3698864395135869102}
+  - component: {fileID: 3586719197217017838}
   m_Layer: 9
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -59,7 +60,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 90
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -77,31 +78,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &7717937753790871132
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7717937753790871135}
-  m_Enabled: 1
---- !u!114 &7717937753790871131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7717937753790871135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df9fbe057a01ce444b7fefdc2037c8b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementMask:
-    serializedVersion: 2
-    m_Bits: 256
-  moveSpeedAuto: 300
-  moveSpeedManual: 100
 --- !u!114 &3698864395135869102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,3 +138,48 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!81 &7717937753790871132
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7717937753790871135}
+  m_Enabled: 1
+--- !u!114 &7717937753790871131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7717937753790871135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9fbe057a01ce444b7fefdc2037c8b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementMask:
+    serializedVersion: 2
+    m_Bits: 256
+  moveSpeedAuto: 300
+  moveSpeedManual: 100
+--- !u!114 &3586719197217017838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7717937753790871135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72f127255c182ab4ca778cd1d4e6a80a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axes: 0
+  sensitivityX: 5
+  sensitivityY: 5
+  minimumX: -360
+  maximumX: 360
+  minimumY: -100
+  maximumY: 60
+  frameCounter: 20

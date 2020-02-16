@@ -1,9 +1,7 @@
 {"namesFromTxt":
 ["ardo",
-"nota",
-"noddy",
-"fang",
-"445454545455"
+"aaaa",
+"bbb"
 ],
 
 "colorsFromTxt":[

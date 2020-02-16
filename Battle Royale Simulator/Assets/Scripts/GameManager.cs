@@ -81,10 +81,6 @@ public class GameManager : MonoBehaviour
 
             stringList = saveObject.namesFromTxt;
             colorList = saveObject.colorsFromTxt;
-            foreach(Color color in colorList)
-            {
-                print(color);
-            }
         }
         else print("no savr");
     }
@@ -160,12 +156,15 @@ public class GameManager : MonoBehaviour
 
     void UpdateScoreboard()
     {
-        playersList.Sort((x, y) => y.ReturnKills().CompareTo(x.ReturnKills()));
-
-        for (int i = 0; i < scoreBoardsButtons.Length; i++)
+        if(playersList.Count >= 3)
         {
-            scoreBoardsButtons[i].SetPlayerToTarget(playersList[i]);
-        }
+            playersList.Sort((x, y) => y.ReturnKills().CompareTo(x.ReturnKills()));
+
+            for(int i = 0; i < scoreBoardsButtons.Length; i++)
+            {
+                scoreBoardsButtons[i].SetPlayerToTarget(playersList[i]);
+            }
+        }     
 
         playersAliveText.text = "Remaining players: " + Convert.ToString(playersList.Count);
     }

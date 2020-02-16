@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(MouseLook))]
 public class CameraController : MonoBehaviour
 {
     public LayerMask movementMask;
     Camera cam;
+    MouseLook mouseLook;
+
     [SerializeField] float moveSpeedAuto = 1;
     [SerializeField] float moveSpeedManual = 1;
 
@@ -13,13 +16,14 @@ public class CameraController : MonoBehaviour
     Quaternion originalRot;
 
     GameObject playerTarget;
-    bool isFreeView = false;
+    public bool isFreeView = false;
     bool canMoveToOriginalPos;
     bool isFirstPerson = false;
 
     void Start()
     {
         cam = Camera.main;
+        mouseLook = GetComponent<MouseLook>();
         originalPos = transform.position;
         originalRot = transform.rotation;
         moveSpeedAuto = moveSpeedAuto * Time.deltaTime;
@@ -29,52 +33,33 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         SetTarget();
-        if (!isFreeView && !canMoveToOriginalPos)
+        if(!isFreeView)
         {
-            if (playerTarget != null)
+            Cursor.lockState = CursorLockMode.None;
+            mouseLook.enabled = false;
+            if(!canMoveToOriginalPos)
             {
-                if (!isFirstPerson) LookTarget();
-                else transform.rotation = playerTarget.transform.rotation;
-                MoveToTarget();
+                if(playerTarget != null)
+                {
+                    if(!isFirstPerson) LookTarget();
+                    else transform.rotation = playerTarget.transform.rotation;
+                    MoveToTarget();
+                }
             }
+            else MoveToOriginalPos();
         }
-        else if(!isFreeView && canMoveToOriginalPos)
-        {
-            MoveToOriginalPos();
-        }
-
+        
         else
         {
+            mouseLook.enabled = true;           
             GetKeyBoardInput();
         }
     }
 
     private void GetKeyBoardInput()
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.Translate(Vector3.forward * moveSpeedManual);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.Translate(Vector3.back * moveSpeedManual);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.Translate(Vector3.left * moveSpeedManual);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Translate(Vector3.right * moveSpeedManual);
-        }
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            transform.Rotate(Vector3.left * moveSpeedManual);
-        }
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            transform.Rotate(Vector3.right * moveSpeedManual);
-        }
+        transform.Translate(Input.GetAxis("Horizontal") * moveSpeedManual, 0, Input.GetAxis("Vertical") * moveSpeedManual);
+        if(Input.GetKeyDown(KeyCode.Escape)) Cursor.lockState = CursorLockMode.None;
     }
 
     private void SetTarget()
@@ -133,7 +118,13 @@ public class CameraController : MonoBehaviour
 
     public void ToggleFirstPerson(bool value)
     {
-        isFirstPerson = value;
+        isFirstPerson = value;       
+    }
+
+    public void SetCursorState(bool isLocked)
+    {
+        if(isLocked) Cursor.lockState = CursorLockMode.Locked;
+        else Cursor.lockState = CursorLockMode.None;
     }
 
     public void SetTargetExternally(GameObject target)
